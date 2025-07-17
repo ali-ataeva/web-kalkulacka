@@ -20,4 +20,11 @@ let add = document.getElementById("add")
 let subtract = document.getElementById("subtract")
 let equals = document.getElementById("equals")
 
-
+let numbers = [
+    seven, eight, nine, four, five, six,
+    one, two, three, zero, doubleZero, comma
+]
+let operators = [multiply, divide, add, subtract]
+let clear = [AC]
+let equal = [equals]
+let percentButton = [percent]
