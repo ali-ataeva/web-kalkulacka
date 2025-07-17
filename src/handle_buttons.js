@@ -76,5 +76,8 @@ operators.forEach((op) => {
         }
     })
 })
-
+AC.addEventListener("click", () => {
+    displayValue = null
+    display.value = displayValue
+})
 
