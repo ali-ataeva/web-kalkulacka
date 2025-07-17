@@ -28,3 +28,37 @@ let operators = [multiply, divide, add, subtract]
 let clear = [AC]
 let equal = [equals]
 let percentButton = [percent]
+
+let displayValue = null
+let A = 0
+let operator = null
+let B = null
+
+numbers.forEach((number) => {
+    number.addEventListener("click", () => {
+        if (displayValue === null) {
+            displayValue = number.value
+        } else {
+            displayValue += number.value
+        }
+        display.value = displayValue
+        if (operator === null) {
+            if (A === 0) {
+                A = [displayValue]
+            }
+            else {
+                A = [A, displayValue]
+            }
+        }
+        else {
+            if (B === null) {
+                B = [displayValue]
+            } else {
+                B = [B, displayValue]
+            }
+        }
+        console.log("A:", A, "B:", B, "operator:", operator);
+    })
+})
+
+
