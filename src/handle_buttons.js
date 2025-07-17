@@ -40,6 +40,26 @@ function parse(array) {
     let finalNumber = parseFloat(singleString)
     return finalNumber
 }
+function math(A, B, operator) {
+    let result;
+    switch (operator) {
+        case "*":
+            result = parse(A) * parse(B);
+            break;
+        case "/":
+            result = parse(A) / parse(B);
+            break;
+        case "+":
+            result = parse(A) + parse(B);
+            break;
+        case "-":
+            result = parse(A) - parse(B);
+            break;
+        default:
+            result = null;
+    }
+    return result;
+}
 
 numbers.forEach((number) => {
     number.addEventListener("click", () => {
@@ -87,10 +107,16 @@ percent.addEventListener("click", () => {
         display.value = displayValue
     }
 })
-
 AC.addEventListener("click", () => {
     displayValue = null
     display.value = displayValue
 })
+equals.addEventListener("click", () => {
+
+    result = math(A, B, operator)
+    displayValue = result
+    display.value = displayValue
+})
+
 
 
