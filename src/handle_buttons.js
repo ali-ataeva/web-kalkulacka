@@ -36,7 +36,7 @@ let operator = null
 let B = null
 
 function parse(array) {
-    let singleString = JSON.stringify(array)
+    let singleString = array.toString()
     let finalNumber = parseFloat(singleString)
     return finalNumber
 }
@@ -81,7 +81,12 @@ operators.forEach((op) => {
         }
     })
 })
-
+percent.addEventListener("click", () => {
+    if (A !== null && B === null && operator === null) {
+        displayValue = parse(A) / 100
+        display.value = displayValue
+    }
+})
 
 AC.addEventListener("click", () => {
     displayValue = null
