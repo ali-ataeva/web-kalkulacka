@@ -17,9 +17,9 @@ let divide = document.getElementById("divide")
 let add = document.getElementById("add")
 let subtract = document.getElementById("subtract")
 
-let equals = document.getElementById("equals")
-let AC = document.getElementById("AC")
 let percent = document.getElementById("percent")
+let AC = document.getElementById("AC")
+let equals = document.getElementById("equals")
 
 let numbers = [
     seven, eight, nine, four, five, six,
@@ -34,6 +34,12 @@ let displayValue = null
 let A = 0
 let operator = null
 let B = null
+
+function parse(array) {
+    let singleString = JSON.stringify(array)
+    let finalNumber = parseFloat(singleString)
+    return finalNumber
+}
 
 numbers.forEach((number) => {
     number.addEventListener("click", () => {
@@ -58,7 +64,6 @@ numbers.forEach((number) => {
                 B.push(number.value)
             }
         }
-        console.log("A:", A, "B:", B, "operator:", operator);
     })
 })
 operators.forEach((op) => {
@@ -76,8 +81,11 @@ operators.forEach((op) => {
         }
     })
 })
+
+
 AC.addEventListener("click", () => {
     displayValue = null
     display.value = displayValue
 })
+
 
