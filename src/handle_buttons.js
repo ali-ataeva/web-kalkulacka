@@ -42,10 +42,10 @@ function parse(string) {
 function math(A, B, operator) {
     let result;
     switch (operator) {
-        case "*":
+        case "x":
             result = parse(A) * parse(B);
             break;
-        case "/":
+        case "÷":
             result = parse(A) / parse(B);
             break;
         case "+":
