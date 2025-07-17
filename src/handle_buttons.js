@@ -44,21 +44,20 @@ numbers.forEach((number) => {
         display.value = displayValue
         if (operator === null) {
             if (A === 0) {
-                A = [displayValue]
+                A = [number.value]
             }
             else {
-                A = [A, displayValue]
+                A.push(number.value)
             }
         }
         else {
             if (B === null) {
-                B = [displayValue]
+                B = [number.value]
             } else {
-                B = [B, displayValue]
+                B.push(number.value)
             }
         }
         console.log("A:", A, "B:", B, "operator:", operator);
     })
 })
-
 
