@@ -35,9 +35,8 @@ let A = 0
 let operator = null
 let B = null
 
-function parse(array) {
-    let singleString = array.toString()
-    let finalNumber = parseFloat(singleString)
+function parse(string) {
+    let finalNumber = parseFloat(string)
     return finalNumber
 }
 function math(A, B, operator) {
@@ -71,27 +70,24 @@ numbers.forEach((number) => {
         display.value = displayValue
         if (operator === null) {
             if (A === 0) {
-                A = [number.value]
+                A = number.value
             }
             else {
-                A.push(number.value)
+                A += number.value
             }
         }
         else {
             if (B === null) {
-                B = [number.value]
+                B = number.value
             } else {
-                B.push(number.value)
+                B += number.value
             }
         }
     })
 })
 operators.forEach((op) => {
     op.addEventListener("click", () => {
-        if (A === 0) {
-            console.warn("zadejte nejdříve číslo");
-        }
-        else if (operator === null) {
+        if (operator === null) {
             displayValue += op.value
             display.value = displayValue
             operator = op.value
@@ -102,10 +98,9 @@ operators.forEach((op) => {
     })
 })
 percent.addEventListener("click", () => {
-    if (A !== null && B === null && operator === null) {
-        displayValue = parse(A) / 100
-        display.value = displayValue
-    }
+    displayValue = parse(A) / 100
+    display.value = displayValue
+
 })
 AC.addEventListener("click", () => {
     displayValue = null
