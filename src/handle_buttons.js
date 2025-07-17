@@ -103,6 +103,9 @@ percent.addEventListener("click", () => {
 
 })
 AC.addEventListener("click", () => {
+    A = 0
+    B = null
+    operator = null
     displayValue = null
     display.value = displayValue
 })
