@@ -12,20 +12,21 @@ let three = document.getElementById("three")
 let zero = document.getElementById("zero")
 let doubleZero = document.getElementById("double-zero")
 let comma = document.getElementById("comma")
-let percent = document.getElementById("percent")
-let AC = document.getElementById("AC")
 let multiply = document.getElementById("multiply")
 let divide = document.getElementById("divide")
 let add = document.getElementById("add")
 let subtract = document.getElementById("subtract")
+
 let equals = document.getElementById("equals")
+let AC = document.getElementById("AC")
+let percent = document.getElementById("percent")
 
 let numbers = [
     seven, eight, nine, four, five, six,
     one, two, three, zero, doubleZero, comma
 ]
 let operators = [multiply, divide, add, subtract]
-let clear = [AC]
+
 let equal = [equals]
 let percentButton = [percent]
 
@@ -60,4 +61,20 @@ numbers.forEach((number) => {
         console.log("A:", A, "B:", B, "operator:", operator);
     })
 })
+operators.forEach((op) => {
+    op.addEventListener("click", () => {
+        if (A === 0) {
+            console.warn("zadejte nejdříve číslo");
+        }
+        else if (operator === null) {
+            displayValue += op.value
+            display.value = displayValue
+            operator = op.value
+        }
+        else if (operator !== null) {
+            console.warn("Už jste zadali operátor");
+        }
+    })
+})
+
 
