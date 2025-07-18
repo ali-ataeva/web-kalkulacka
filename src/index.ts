@@ -1,16 +1,12 @@
 let display = document.getElementById("display")
 
-let seven = document.getElementById("seven")
-let eight = document.getElementById("eight")
-let nine = document.getElementById("nine")
-let four = document.getElementById("four")
-let five = document.getElementById("five")
-let six = document.getElementById("six")
-let one = document.getElementById("one")
-let two = document.getElementById("two")
-let three = document.getElementById("three")
-let zero = document.getElementById("zero")
-let doubleZero = document.getElementById("double-zero")
+
+let buttons = {}
+for (let i: number = 0; i <= 9; i++) {
+    buttons[i] = document.getElementById(i)  
+}
+
+let doubleZero = document.getElementById("00")
 let comma = document.getElementById("comma")
 let multiply = document.getElementById("multiply")
 let divide = document.getElementById("divide")
@@ -22,24 +18,23 @@ let AC = document.getElementById("AC")
 let equals = document.getElementById("equals")
 
 let numbers = [
-    seven, eight, nine, four, five, six,
-    one, two, three, zero, doubleZero, comma
+    ...Object.keys(buttons), doubleZero, comma
 ]
 let operators = [multiply, divide, add, subtract]
 
 let equal = [equals]
 let percentButton = [percent]
 
-let displayValue = null
-let A = 0
-let operator = null
-let B = null
+let displayValue: any = null
+let A: string = "0"
+let operator : string = ""
+let B : string = "0"
 
-function parse(string) {
-    let finalNumber = parseFloat(string)
+function parse(inputNumber: string) {
+    let finalNumber = parseFloat(inputNumber)
     return finalNumber
 }
-function math(A, B, operator) {
+function math(A: string, B: string, operator: string) {
     let result;
     switch (operator) {
         case "x":
@@ -61,23 +56,23 @@ function math(A, B, operator) {
 }
 
 numbers.forEach((number) => {
-    number.addEventListener("click", () => {
+    number?.addEventListener("click", () => {
         if (displayValue === null) {
-            displayValue = number.value
+            displayValue = number.valueOf()
         } else {
-            displayValue += number.value
+            displayValue += number.valueOf()
         }
         display.value = displayValue
-        if (operator === null) {
-            if (A === 0) {
-                A = number.value
+        if (operator === "") {
+            if (A === "0") {
+                A = number.valueOf()
             }
             else {
-                A += number.value
+                A += number.valueOf()
             }
         }
         else {
-            if (B === null) {
+            if (B === "0") {
                 B = number.value
             } else {
                 B += number.value
@@ -87,12 +82,12 @@ numbers.forEach((number) => {
 })
 operators.forEach((op) => {
     op.addEventListener("click", () => {
-        if (operator === null) {
+        if (operator === "") {
             displayValue += op.value
             display.value = displayValue
             operator = op.value
         }
-        else if (operator !== null) {
+        else if (operator !== "") {
             console.warn("Už jste zadali operátor");
         }
     })
@@ -103,9 +98,9 @@ percent.addEventListener("click", () => {
 
 })
 AC.addEventListener("click", () => {
-    A = 0
-    B = null
-    operator = null
+    A = "0"
+    B = "0"
+    operator = ""
     displayValue = null
     display.value = displayValue
 })
