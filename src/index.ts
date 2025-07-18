@@ -115,6 +115,3 @@ equals.addEventListener("click", () => {
     displayValue = result
     display.value = displayValue
 })
-
-
-
