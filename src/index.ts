@@ -1,21 +1,39 @@
-let display = document.getElementById("display")
-
-
-let buttons = {}
-for (let i: number = 0; i <= 9; i++) {
-    buttons[i] = document.getElementById(i)  
+type AllIdListType = {
+    [key: number]: string
 }
-
-let doubleZero = document.getElementById("00")
-let comma = document.getElementById("comma")
-let multiply = document.getElementById("multiply")
-let divide = document.getElementById("divide")
-let add = document.getElementById("add")
-let subtract = document.getElementById("subtract")
-
-let percent = document.getElementById("percent")
-let AC = document.getElementById("AC")
-let equals = document.getElementById("equals")
+let allIdList: AllIdListType = {
+    0: "1",
+    1: "2",
+    2: "3",
+    3: "4",
+    4: "5",
+    5: "6",
+    6: "7",
+    7: "8",
+    8: "9",
+    9: "0",
+    10: "00",
+    11: "comma",
+    12: "multiply",
+    13: "divide",
+    14: "add",
+    15: "subtract",
+    16: "percent",
+    17: "AC",
+    18: "equals",
+    19: "display"
+}
+type ButtonsElementType = {
+    [key: number]: HTMLElement | null
+}
+let buttons: ButtonsElementType = {}
+for (let i: number = 0; i <= 18; i++) {
+    let element = document.getElementById((allIdList[i]).toString())
+    if (element === null) {
+        continue
+    }  
+    buttons[i] = element
+}
 
 let numbers = [
     ...Object.keys(buttons), doubleZero, comma
