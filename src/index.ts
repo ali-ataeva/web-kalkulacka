@@ -111,6 +111,17 @@ if (percentElement !== null) {
     })
 }
 
+// AC logic
+let ACElement = <HTMLInputElement>buttons[17]
+if (ACElement !== null) {
+    ACElement.addEventListener("click", () => {
+        A = "0"
+        B = "0"
+        operator = ""
+        displayValue = ""
+        display.value = displayValue
+    })
+}
 
 equals.addEventListener("click", () => {
 
