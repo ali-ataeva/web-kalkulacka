@@ -27,21 +27,12 @@ type ButtonsElementType = {
     [key: number]: HTMLElement | null
 }
 let buttons: ButtonsElementType = []
-for (let i: number = 0; i <= 18; i++) {
+for (let i: number = 0; i <= 19; i++) {
     let element = document.getElementById((allIdList[i]).toString())
     if (element === null) {
         continue
     }  
     buttons[i] = element
-}
-
-
-let other: ButtonsElementType = []
-for (let i: number = 16; i <= 19; i++) {
-    if (buttons[i] === null) {
-        continue
-    }  
-    other[i] = buttons[i]
 }
 
 let displayValue: string = "" 
