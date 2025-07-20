@@ -54,6 +54,7 @@ let displayValue: string = ""
 let A: string = "0"
 let operator : string = ""
 let B : string = "0"
+let display = <HTMLInputElement>buttons[19]
 
 function parse(inputNumber: string) {
     let finalNumber = parseFloat(inputNumber)
@@ -87,31 +88,31 @@ for (let i = 0; i <= 11; i++) {
         continue
     }
     element.addEventListener("click", () => {
-        let display = <HTMLInputElement>buttons[19]
         displayValue += element.value;
         display.value = displayValue;
         (operator === "") ? (A += element.value ) : (B += element.value )
     })
 }
 
+//operators logic
+for (let i = 12; i <= 15; i++) {
+    let element = <HTMLInputElement>buttons[i]
+    if (element === null) {
+        continue
+    } 
+    if (operator === "") {
+        displayValue += element.value
+        display.value = displayValue
+        operator = element.value
+    }    
+}
 
-operators.forEach((op) => {
-    op.addEventListener("click", () => {
-        if (operator === "") {
-            displayValue += op.value
-            display.value = displayValue
-            operator = op.value
-        }
-        else if (operator !== "") {
-            console.warn("Už jste zadali operátor");
-        }
-    })
-})
 percent.addEventListener("click", () => {
     displayValue = parse(A) / 100
     display.value = displayValue
 
 })
+
 AC.addEventListener("click", () => {
     A = "0"
     B = "0"
@@ -119,6 +120,7 @@ AC.addEventListener("click", () => {
     displayValue = ""
     display.value = displayValue
 })
+
 equals.addEventListener("click", () => {
 
     result = math(A, B, operator)
