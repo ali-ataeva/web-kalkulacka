@@ -82,14 +82,16 @@ for (let i = 0; i <= 11; i++) {
 //operators logic
 for (let i = 12; i <= 15; i++) {
     let operatorElement = <HTMLInputElement>buttons[i]
-    if (operatorElement === null) {
-        continue
+    if (operatorElement !== null) {
+        operatorElement.addEventListener("click", () => {
+            if (operator === "") {
+                displayValue += operatorElement.value
+                display.value = displayValue
+                operator = operatorElement.value
+            }   
+        })
     } 
-    if (operator === "") {
-        displayValue += operatorElement.value
-        display.value = displayValue
-        operator = operatorElement.value
-    }    
+     
 }
 
 // percent logic
