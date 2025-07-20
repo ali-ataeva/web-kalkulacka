@@ -1,32 +1,32 @@
 type AllIdListType = {
     [key: number]: string
 }
-let allIdList: AllIdListType = {
-    0: "1",
-    1: "2",
-    2: "3",
-    3: "4",
-    4: "5",
-    5: "6",
-    6: "7",
-    7: "8",
-    8: "9",
-    9: "0",
-    10: "00",
-    11: "comma",
-    12: "multiply",
-    13: "divide",
-    14: "add",
-    15: "subtract",
-    16: "percent",
-    17: "AC",
-    18: "equals",
-    19: "display"
-}
+let allIdList: AllIdListType = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "0",
+    "00",
+    "comma",
+    "multiply",
+    "divide",
+    "add",
+    "subtract",
+    "percent",
+    "AC",
+    "equals",
+    "display"
+]
 type ButtonsElementType = {
     [key: number]: HTMLElement | null
 }
-let buttons: ButtonsElementType = {}
+let buttons: ButtonsElementType = []
 for (let i: number = 0; i <= 18; i++) {
     let element = document.getElementById((allIdList[i]).toString())
     if (element === null) {
@@ -35,15 +35,22 @@ for (let i: number = 0; i <= 18; i++) {
     buttons[i] = element
 }
 
-let numbers = [
-    ...Object.keys(buttons), doubleZero, comma
-]
-let operators = [multiply, divide, add, subtract]
+let operators: ButtonsElementType = []
+for (let i: number = 12; i <= 15; i++) {
+    if (buttons[i] === null) {
+        continue
+    }  
+    operators[i] = buttons[i]
+}
+let other: ButtonsElementType = []
+for (let i: number = 16; i <= 19; i++) {
+    if (buttons[i] === null) {
+        continue
+    }  
+    other[i] = buttons[i]
+}
 
-let equal = [equals]
-let percentButton = [percent]
-
-let displayValue: any = null
+let displayValue: string = "" 
 let A: string = "0"
 let operator : string = ""
 let B : string = "0"
@@ -73,31 +80,21 @@ function math(A: string, B: string, operator: string) {
     return result;
 }
 
-numbers.forEach((number) => {
-    number?.addEventListener("click", () => {
-        if (displayValue === null) {
-            displayValue = number.valueOf()
-        } else {
-            displayValue += number.valueOf()
-        }
-        display.value = displayValue
-        if (operator === "") {
-            if (A === "0") {
-                A = number.valueOf()
-            }
-            else {
-                A += number.valueOf()
-            }
-        }
-        else {
-            if (B === "0") {
-                B = number.value
-            } else {
-                B += number.value
-            }
-        }
+//numbers + comma logic
+for (let i = 0; i <= 11; i++) {
+    let element = <HTMLInputElement>buttons[i]
+    if (element === null) {
+        continue
+    }
+    element.addEventListener("click", () => {
+        let display = <HTMLInputElement>buttons[19]
+        displayValue += element.value;
+        display.value = displayValue;
+        (operator === "") ? (A += element.value ) : (B += element.value )
     })
-})
+}
+
+
 operators.forEach((op) => {
     op.addEventListener("click", () => {
         if (operator === "") {
@@ -119,7 +116,7 @@ AC.addEventListener("click", () => {
     A = "0"
     B = "0"
     operator = ""
-    displayValue = null
+    displayValue = ""
     display.value = displayValue
 })
 equals.addEventListener("click", () => {
