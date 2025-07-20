@@ -35,13 +35,7 @@ for (let i: number = 0; i <= 18; i++) {
     buttons[i] = element
 }
 
-let operators: ButtonsElementType = []
-for (let i: number = 12; i <= 15; i++) {
-    if (buttons[i] === null) {
-        continue
-    }  
-    operators[i] = buttons[i]
-}
+
 let other: ButtonsElementType = []
 for (let i: number = 16; i <= 19; i++) {
     if (buttons[i] === null) {
@@ -83,43 +77,40 @@ function math(A: string, B: string, operator: string) {
 
 //numbers + comma logic
 for (let i = 0; i <= 11; i++) {
-    let element = <HTMLInputElement>buttons[i]
+    let numberElement = <HTMLInputElement>buttons[i]
     if (element === null) {
         continue
     }
-    element.addEventListener("click", () => {
-        displayValue += element.value;
+    numberElement.addEventListener("click", () => {
+        displayValue += numberElement.value;
         display.value = displayValue;
-        (operator === "") ? (A += element.value ) : (B += element.value )
+        (operator === "") ? (A += numberElement.value ) : (B += numberElement.value )
     })
 }
 
 //operators logic
 for (let i = 12; i <= 15; i++) {
-    let element = <HTMLInputElement>buttons[i]
-    if (element === null) {
+    let operatorElement = <HTMLInputElement>buttons[i]
+    if (operatorElement === null) {
         continue
     } 
     if (operator === "") {
-        displayValue += element.value
+        displayValue += operatorElement.value
         display.value = displayValue
-        operator = element.value
+        operator = operatorElement.value
     }    
 }
 
-percent.addEventListener("click", () => {
-    displayValue = parse(A) / 100
-    display.value = displayValue
+// percent logic
+let percentElement = <HTMLInputElement>buttons[16]
+if (percentElement !== null) {
+    percentElement.addEventListener("click", () => {
+        displayValue = (parse(A) / 100).toString()
+        display.value = displayValue
 
-})
+    })
+}
 
-AC.addEventListener("click", () => {
-    A = "0"
-    B = "0"
-    operator = ""
-    displayValue = ""
-    display.value = displayValue
-})
 
 equals.addEventListener("click", () => {
 
