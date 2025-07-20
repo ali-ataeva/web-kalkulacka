@@ -78,7 +78,7 @@ function math(A: string, B: string, operator: string) {
 //numbers + comma logic
 for (let i = 0; i <= 11; i++) {
     let numberElement = <HTMLInputElement>buttons[i]
-    if (element === null) {
+    if (numberElement === null) {
         continue
     }
     numberElement.addEventListener("click", () => {
@@ -123,9 +123,16 @@ if (ACElement !== null) {
     })
 }
 
-equals.addEventListener("click", () => {
+// equals logic
+let equalsElement = <HTMLInputElement>buttons[18]
+if (equalsElement !== null) {
+    equalsElement.addEventListener("click", () => {
+        let result = math(A, B, operator)
+        if (result !== null) {
+            displayValue = result.toString()
+            display.value = displayValue
+        }
+        
+    })
+}
 
-    result = math(A, B, operator)
-    displayValue = result
-    display.value = displayValue
-})
